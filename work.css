@@ -16,6 +16,12 @@
   border-radius: var(--bs-border-radius);
 }
 
+.form-select {
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  width: 75%;
+}
+
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
