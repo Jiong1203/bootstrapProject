@@ -6,7 +6,6 @@
 * License: https://bootstrapmade.com/license/
 */
 
-// 你的資料，這裡只是一個簡單的範例
 var data = [
   ["Unity Pugh", "9958", "Curicó", "2005/02/11", "37%"],
   ["Theodore Duran", "8971", "Dhanbad", "1999/04/07", "97%"],
@@ -27,18 +26,47 @@ var data = [
   ["Drew Phillips", "2931", "Goes", "2011/18/10", "58%"],
   ["Emerald Warner", "6205", "Chiavari", "2002/08/04", "58%"],
   ["Colin Burch", "7457", "Anamur", "2004/02/01", "34%"],
-  ["Russell Haynes", "8916", "Frascati", "2015/28/04", "18%"],
-  // ... 其他資料
+  ["Russell Haynes", "8916", "Frascati", "2015/28/04", "18%"]
 ];
 
-// 遍歷資料，將每一行插入表格的 tbody 中
-for (var i = 0; i < data.length; i++) {
-  var row = $("<tr>");
-  for (var j = 0; j < data[i].length; j++) {
-    row.append("<td>" + data[i][j] + "</td>");
+$(document).ready(function() {
+  for (var i = 0; i < data.length; i++) {
+    var row = $("<tr>");
+    for (var j = 0; j < data[i].length; j++) {
+      row.append("<td>" + data[i][j] + "</td>");
+    }
+    $("#myTable tbody").append(row);
   }
-  $("#myTable tbody").append(row);
-}
+
+  $('#mySelect').change(function() {
+    var selectedValue = $(this).val();
+
+    if (selectedValue === 'ALL') {
+      $("#myTable tbody tr").show();
+    } else {
+      $("#myTable tbody tr").hide();
+  
+      for (var i = 0; i < selectedValue; i++) {
+        $("#myTable tbody tr:eq(" + i + ")").show();
+      }
+    }
+  });
+
+  $("#searchBtn").click(function() {
+    var searchValue = $("#searchInput").val().toLowerCase();
+
+    $("#myTable tbody tr").each(function() {
+      var rowText = $(this).text().toLowerCase();
+    
+      if (rowText.indexOf(searchValue) !== -1) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
+  });
+});
+
 
 (function() {
     "use strict";
